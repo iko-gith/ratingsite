@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Gill Sans', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(-135deg, #FF5733, #67F6FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150vh;
+  margin: 0;
+}
+
+.rating-container {
+  background-color: white;
+  padding: 2rem 3rem; 
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555; 
+}
+
+input[type="text"] {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc; 
+  border-radius: 10px; 
+  font-size: 1rem; 
+  transition: 0.3s; 
+}
+
+input[type="text"]:focus {
+  border-color: #5c9ded; 
+  outline: none;
+  box-shadow: 0 0 5px rgba(92, 157, 237, 0.5); 
+}
+
+textarea[type="text"] {
+  padding: 0.75rem 0.5rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc; 
+  border-radius: 10px; 
+  font-size: 0.75rem; 
+  transition: 0.3s;  
+}
+
+textarea[type="text"]:focus {
+  border-color: #5c9ded; 
+  outline: none;
+  box-shadow: 0 0 5px rgba(92, 157, 237, 0.5); 
+}
+
+input[type="submit"] {
+  background-color: #5c9ded; /* Синий фон кнопки */
+  color: white; /* Белый текст */
+  padding: 0.75rem; /* Внутренние отступы */
+  border: none; /* Без рамки */
+  border-radius: 10px; /* Скруглённые углы */
+  font-size: 1rem; /* Размер текста */
+  cursor: pointer; /* Изменение курсора на "руку" */
+  transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+}
+
+input[type="submit"]:hover {
+  background-color: #417cd0; /* Цвет кнопки при наведении */
+}
+
+input[type="range"] {
+  margin-bottom: 1.2rem;
+}
+
+/* Общий контейнер для сообщений */
+.message {
+  padding: 1.7rem 2.1rem; /* Внутренние отступы */
+  margin: 1.5rem auto; /* Вертикальные отступы и автоматическое центрирование */
+  border-radius: 10px; /* Скруглённые углы */
+  max-width: 400px; /* Максимальная ширина */
+  font-size: 1.7rem; /* Размер текста */
+  font-weight: 700; /* Жирное начертание */
+  text-align: center; /* Центрирование текста */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень вокруг */
+  animation: fadeIn 0.5s ease-in-out; /* Анимация появления */
+}
+
+/* Успешное сообщение */
+.message-success {
+  background-color: #e6f4ea; /* Светло-зеленый фон */
+  color: #237a3f; /* Тёмно-зелёный текст */
+  border: 1px solid #a5d6b2; /* Рамка зелёного цвета */
+}
+
+/* Сообщение об ошибке */
+.message-error {
+  background-color: #fcebea; /* Светло-красный фон */
+  color: #b91c1c; /* Тёмно-красный текст */
+  border: 1px solid #f5c2c0; /* Рамка красного цвета */
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Полная прозрачность */
+    transform: translateY(-8px); /* Подъём вверх */
+  }
+  to {
+    opacity: 1; /* Полная видимость */
+    transform: translateY(0); /* Возврат к исходной позиции */
+  }
+}
+

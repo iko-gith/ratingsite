@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Оценка удолетворенности</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="rating-container">
+    <h2>Оценка</h2>
+    <form method="POST" action="/postrating">
+      <label for="username">Ваше имя:</label>
+      <input    type="text" 
+		id="username" 
+		name="username" 
+		required></input>
+
+
+      <label for="review">Ваш отзыв:</label>
+      <textarea type="text"
+	        id="userreview" 
+		name="userreview" 
+		style="height: 5rem"></textarea>
+
+
+      <label for="rating">Ваша оценка сайта:</label>
+      <input    type="range"
+		id="userrating" 
+		name="userrating" 
+		min="1" max="10" 
+		value="5"></input>
+
+
+      <input    type="submit" 
+      		value="Подтвердить"></label>
+
+      <label for="postedratings">Опубликованные отзывы:</label>
+      <pre>{{CONTENT}}</pre>
+    </form>
+  </div>
+</body>
+</html>
+
+
