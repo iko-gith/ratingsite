@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Gill Sans', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(-135deg, #FF5733, #67F6FF);
+  background: linear-gradient(-90deg, #363636, #424242);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,18 +13,37 @@ body {
 }
 
 .rating-container {
-  background-color: white;
+  background-color: #2b2b2b;
   padding: 2rem 3rem; 
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 8px 24px #b06cba; 
   width: 100%;
   max-width: 400px;
+}
+
+.highlight {
+  display: inline-block;
+  background-color: #b06cba; 
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px #d482e0;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.p {
+  margin-bottom: 1rem;
+  line-height: 25px;
+}
+
+.review-text {
+  color: #e8e8e8; 
 }
 
 h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #b06cba; 
 }
 
 form {
@@ -35,7 +54,7 @@ form {
 label {
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #555; 
+  color: #e8e8e8; 
 }
 
 input[type="text"] {
@@ -56,7 +75,7 @@ input[type="text"]:focus {
 textarea[type="text"] {
   padding: 0.75rem 0.5rem;
   margin-bottom: 1.2rem;
-  border: 1px solid #ccc; 
+  border: 1px solid #666; 
   border-radius: 10px; 
   font-size: 0.75rem; 
   transition: 0.3s;  
@@ -68,23 +87,29 @@ textarea[type="text"]:focus {
   box-shadow: 0 0 5px rgba(92, 157, 237, 0.5); 
 }
 
+.review-input {
+  height = 5rem;
+}
+
 input[type="submit"] {
-  background-color: #5c9ded; /* Синий фон кнопки */
-  color: white; /* Белый текст */
-  padding: 0.75rem; /* Внутренние отступы */
-  border: none; /* Без рамки */
-  border-radius: 10px; /* Скруглённые углы */
-  font-size: 1rem; /* Размер текста */
-  cursor: pointer; /* Изменение курсора на "руку" */
-  transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+  background-color: #b06cba; 
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1.2rem;
 }
 
 input[type="submit"]:hover {
-  background-color: #417cd0; /* Цвет кнопки при наведении */
+  background-color: #d482e0;
 }
 
 input[type="range"] {
   margin-bottom: 1.2rem;
+  accent-color: purple;
 }
 
 /* Общий контейнер для сообщений */

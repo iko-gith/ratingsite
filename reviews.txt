@@ -1,2 +1,0 @@
-10,Daniil,This site is kewl
-1,NotDaniil,This site is bad

@@ -2,8 +2,9 @@
 #define CONSTANTS_H
 
 // Базовые пути
-#define DIR_TEMPLATES "./templates/"
-#define DIR_CSS       "./css/"
+#define DIR_TEMPLATES "./src/templates/"
+#define DIR_CSS       "./src/css/"
+#define DIR_DATA      "./data/"
 
 // Пути к HTML-шаблонам
 #define PATH_RATING_HTML             DIR_TEMPLATES "rating.html"
@@ -18,6 +19,6 @@
 #define CONTENT_TYPE_CSS    "Content-Type: text/css; charset=utf-8\r\n"
 
 // Файл для сохранения отзывов
-#define FILE_REVIEWS	    "reviews.txt"
+#define FILE_REVIEWS	      DIR_DATA	"reviews.html"
 
 #endif
