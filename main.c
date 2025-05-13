@@ -11,28 +11,17 @@
 static int process_request(struct mg_connection *c, 
                            struct mg_http_message *hm) {
     PostResult result = post_result_init();
-
+    
+    // Если получен POST запрос
     if (!mg_strcmp(    hm->uri,    mg_str("/postrating")) &&
         !mg_strcasecmp(hm->method, mg_str("POST")) 
        ) {
-	get_response_success(&result, hm);   // Получаем response из функции
-        //if (response) {		        	// При наличии response, сказать серверу что все ОК
-        //    status_code = 200;
-        //    ctype = CONTENT_TYPE_HTML;
-        //    error_code = ERR_OK;
-	//}
-
-    } 
+	    get_response_success(&result, hm);
+    }
 
     // Если запрашивается файл стилей
     else if (!mg_strcmp(hm->uri, mg_str("/styles.css"))) {
 	get_styles(&result);
-        //result->response = read_file(PATH_CSS_STYLES); // Читаем файл CSS
-        //if (response) {
-        //    status_code = 200;
-        //    ctype = CONTENT_TYPE_CSS;
-        //    error_code = ERR_OK;
-        //}
     } 
 
     // Если запрашивается что-либо другое — возвращаем главную страницу rating.html
@@ -41,7 +30,7 @@ static int process_request(struct mg_connection *c,
     }
 
     
-    if (result.error_code == ERR_OK)				      // Если не было ошибок — отправляем ответ клиенту
+    if (result.error_code == ERR_OK)			      // Если не было ошибок — отправляем ответ клиенту
         mg_http_reply(c, result.status_code, result.content_type, "%s", result.response); 
     else						      // В случае ошибки — пустой ответ с кодом 500
         mg_http_reply(c, 500, "", ""); 
