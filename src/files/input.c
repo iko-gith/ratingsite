@@ -4,8 +4,8 @@
 
 // Функция для чтения файла
 char *read_file(const char *filename) {
-    FILE *f = fopen(filename, "rb");
-    char *res = NULL;
+    FILE *f = fopen(filename, "rb");	// Открываем файл для чтения (rb - Двоичный вид)
+    char *res = NULL;			// Результат
 
     if (f) {				// Файл найден, начинаем считывание данных
         fseek(f, 0, SEEK_END);		// Ставим указатель на начало

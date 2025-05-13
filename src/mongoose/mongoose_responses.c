@@ -24,36 +24,36 @@ void get_response_success(PostResult *result,
 			 struct mg_http_message *hm) {
 
     // Необходимые нам аргументы
-    char username[100];
-    char review[100];
-    char rating[10];
+    char username[100];		// Имя пользователя
+    char review[100];		// Отзыв в виде текста
+    char rating[10];		// Оценка
 
     // Извлечение значений из тела POST-запроса
     mg_http_get_var(&hm->body, 
-                    "username", username, sizeof(username));
+                    "username", username, sizeof(username));	  // Получаем имя
     mg_http_get_var(&hm->body,
-		    "userreview", review, sizeof(review));
+		    "userreview", review, sizeof(review));	  // Получаем отзыв
     mg_http_get_var(&hm->body,
-		    "userrating", rating, sizeof(rating));
-    if ( strlen(username)<=0 || strlen(rating)<=0 ) {				// Если не получили нужные данные, даем знать что они отсутсвуют
+		    "userrating", rating, sizeof(rating));	  // Получаем оценку
+    if ( strlen(username)<=0 || strlen(rating)<=0 ) {		  // Если не получили нужные данные, выдать окно ошибки
         result->error_code = ERR_MISSING_USERNAME;
 	result->response = read_file(PATH_RATING_ERROR_HTML);
-    } else {			   						// При наличии всех нужных пунктов, записываем в файл
+    } else {			   				  // При наличии всех нужных пунктов, записываем в файл
 	int writing_result = write_to_file(FILE_REVIEWS,
 			"<p><span class=\"highlight\">%s</span>" 	 // Оценка пользователя
 			"<span class=\"review-text\"> by <b>%s</b> <br>" // Имя Пользователя
 			"%s <br> </span> </p>\n", 			 // Отзыв пользователя
 			rating, username, review);			 // Используемые аргументы
 	
-        if ( !writing_result ) {						// При ошибке записи, выдать окно ошибки
+        if ( !writing_result ) {				  // При ошибке записи, выдать окно ошибки
 	    result->error_code = ERR_FAILED_SAVE_REVIEW;
 	    result->response = read_file(PATH_RATING_ERROR_HTML);
-    } else {									// При успешной записи, выдать экран подтверждения
-	result->response = read_file(PATH_RATING_SUCCESS_HTML);
+        } else {						  // При успешной записи, выдать окно успеха
+	    result->response = read_file(PATH_RATING_SUCCESS_HTML);
         }
     }
 
-    if (result->response) {
+    if (result->response) {					  // Если response получен, даем знать серверу что все ОК
         result->status_code = 200;
 	result->content_type = CONTENT_TYPE_HTML;
 	result->error_code = ERR_OK;
@@ -62,9 +62,8 @@ void get_response_success(PostResult *result,
 
 // Функция для получения стилей
 void get_styles(PostResult *result) {
-    result->response = read_file(PATH_CSS_STYLES);
-
-    if (result->response) {
+    result->response = read_file(PATH_CSS_STYLES);	// Пытаемся открыть файл стилей
+    if (result->response) {			 	// Если response получен, даем знать серверу что все ОК	
         result->status_code = 200;
 	result->content_type = CONTENT_TYPE_CSS;
 	result->error_code = ERR_OK;
@@ -73,22 +72,21 @@ void get_styles(PostResult *result) {
 
 // Функция для получения обычной страницы
 void get_main_page(PostResult *result) {
-    result->response = read_file(PATH_RATING_HTML);
+    result->response = read_file(PATH_RATING_HTML);			     // Пытаемся открыть обычную страницу
     if (result->response) {
-	char *reviews = read_file(FILE_REVIEWS);				// Получаем отзывы
+	char *reviews = read_file(FILE_REVIEWS);			     // Получаем отзывы
 	if (!reviews) {	
-	    result->response = str_replace(result->response, 			// Если их нет, даем пользователю знать
-			                   "{{CONTENT}}", 
-			                   "<p><span class=\"review-text\">"
+	    result->response = str_replace(result->response, 		     // Если их нет, даем пользователю знать
+			                   "{{CONTENT}}", 		     // Текст из страницы под замену
+			                   "<p><span class=\"review-text\">" // Текст, на который произойдет замена
 					   "No reviews yet.</span><p>");
         } else {
-	    result->response = str_replace(result->response, 	  		// Если они найдены, вставляем их в страницу
-			                   "{{CONTENT}}", 
-			                   reviews);
+	    result->response = str_replace(result->response, 	  	     // Если они найдены, вставляем их в страницу
+			                   "{{CONTENT}}", 		     // Текст из страницы под замену
+			                   reviews);			     // Текст с отызами пользователей
 	    free(reviews);
         }
-	
-	if (result->response) {
+	if (result->response) {						     // Если response получен, даем знать серверу что все ОК
 	    result->status_code = 200;
 	    result->content_type = CONTENT_TYPE_HTML;
 	    result->error_code = ERR_OK;

@@ -57,6 +57,7 @@ label {
   color: #e8e8e8; 
 }
 
+/* Поле ввода отзыва */
 input[type="text"] {
   padding: 0.75rem 1rem;
   margin-bottom: 1.2rem;
@@ -66,12 +67,14 @@ input[type="text"] {
   transition: 0.3s; 
 }
 
+/* Поле ввода имени (При фокусе) */
 input[type="text"]:focus {
   border-color: #5c9ded; 
   outline: none;
   box-shadow: 0 0 5px rgba(92, 157, 237, 0.5); 
 }
 
+/* Поле ввода отзыва */
 textarea[type="text"] {
   padding: 0.75rem 0.5rem;
   margin-bottom: 1.2rem;
@@ -81,6 +84,7 @@ textarea[type="text"] {
   transition: 0.3s;  
 }
 
+/* Поле ввода отзыва (При фокусе) */
 textarea[type="text"]:focus {
   border-color: #5c9ded; 
   outline: none;
@@ -91,6 +95,7 @@ textarea[type="text"]:focus {
   height = 5rem;
 }
 
+/* Кнопка отправки оценки */
 input[type="submit"] {
   background-color: #b06cba; 
   color: white;
@@ -103,10 +108,12 @@ input[type="submit"] {
   margin-bottom: 1.2rem;
 }
 
+/* Кнопка отправки оценки (При наведении) */
 input[type="submit"]:hover {
   background-color: #d482e0;
 }
 
+/* Ползунок оценки */
 input[type="range"] {
   margin-bottom: 1.2rem;
   accent-color: purple;
