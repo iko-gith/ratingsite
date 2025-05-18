@@ -18,7 +18,8 @@
 #define CONTENT_TYPE_HTML   "Content-Type: text/html; charset=utf-8\r\n"
 #define CONTENT_TYPE_CSS    "Content-Type: text/css; charset=utf-8\r\n"
 
-// Файл для сохранения отзывов
+// Файлы для записи данных
 #define FILE_REVIEWS	      DIR_DATA	"reviews.html"
+#define FILE_LOG	      DIR_DATA	"log.txt"
 
 #endif
