@@ -1,7 +1,7 @@
 #include "../mongoose/mongoose.h"     
 #include "../files/input.h"    
 #include "../files/output.h"
-#include "../text/text.h"
+#include "../string/string.h"
 #include "../../constants.h"
 #include "responses.h"
 #include <stdlib.h>                  
@@ -22,7 +22,7 @@ PostResult post_result_init() {
 // Функция для записи значений от POST-запроса
 void get_response_success(PostResult *result,
 			 struct mg_http_message *hm) {
-
+    
     // Необходимые нам аргументы
     char username[100];		// Имя пользователя
     char review[100];		// Отзыв в виде текста
@@ -49,6 +49,7 @@ void get_response_success(PostResult *result,
 	    result->error_code = ERR_FAILED_SAVE_REVIEW;
 	    result->response = read_file(PATH_RATING_ERROR_HTML);
         } else {						  // При успешной записи, выдать окно успеха
+	    result->error_code = ERR_OK;
 	    result->response = read_file(PATH_RATING_SUCCESS_HTML);
         }
     }
@@ -56,25 +57,36 @@ void get_response_success(PostResult *result,
     if (result->response) {					  // Если response получен, даем знать серверу что все ОК
         result->status_code = 200;
 	result->content_type = CONTENT_TYPE_HTML;
-	result->error_code = ERR_OK;
+	//result->error_code = ERR_OK;
     }
 }
 
 // Функция для получения стилей
 void get_styles(PostResult *result) {
+    result->error_code = ERR_OK;
     result->response = read_file(PATH_CSS_STYLES);	// Пытаемся открыть файл стилей
+    
+    if ( !result->response ) {
+	result->error_code = ERR_FAILED_GET_STYLES;
+	result->response = read_file(PATH_RATING_ERROR_HTML);
+    }
+
     if (result->response) {			 	// Если response получен, даем знать серверу что все ОК	
         result->status_code = 200;
 	result->content_type = CONTENT_TYPE_CSS;
-	result->error_code = ERR_OK;
+	//result->error_code = ERR_OK;
     }
 }
 
 // Функция для получения обычной страницы
 void get_main_page(PostResult *result) {
+    result->error_code = ERR_FAILED_GET_MAIN_PAGE;
     result->response = read_file(PATH_RATING_HTML);			     // Пытаемся открыть обычную страницу
+    
     if (result->response) {
+	result->error_code = ERR_FAILED_LOAD_REVIEWS;
 	char *reviews = read_file(FILE_REVIEWS);			     // Получаем отзывы
+	
 	if (!reviews) {	
 	    result->response = str_replace(result->response, 		     // Если их нет, даем пользователю знать
 			                   "{{CONTENT}}", 		     // Текст из страницы под замену
@@ -86,10 +98,11 @@ void get_main_page(PostResult *result) {
 			                   reviews);			     // Текст с отызами пользователей
 	    free(reviews);
         }
+
 	if (result->response) {						     // Если response получен, даем знать серверу что все ОК
+	    result->error_code = ERR_OK;
 	    result->status_code = 200;
 	    result->content_type = CONTENT_TYPE_HTML;
-	    result->error_code = ERR_OK;
 	}
     }
 }

@@ -9,7 +9,10 @@ enum {
     ERR_OK                   = 0,
     ERR_FAILED_INITIALIZE    = 1,
     ERR_MISSING_USERNAME     = 2, 
-    ERR_FAILED_SAVE_REVIEW   = 3
+    ERR_FAILED_SAVE_REVIEW   = 3,
+    ERR_FAILED_GET_STYLES    = 4,
+    ERR_FAILED_GET_MAIN_PAGE = 5,
+    ERR_FAILED_LOAD_REVIEWS  = 6
 };
 
 /**
