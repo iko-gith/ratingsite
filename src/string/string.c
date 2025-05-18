@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "text.h"
+#include "string.h"
 
 // Функция для замены определенной части строки другой строкой
 char *str_replace(char *origin, 
