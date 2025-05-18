@@ -1,5 +1,5 @@
-#ifndef TEXT_H
-#define TEXT_H
+#ifndef STRING_H
+#define STRING_H
 
 /**
 * @brief Возврат строки, с замененными её частями
@@ -11,4 +11,4 @@
 
 char *str_replace(char *origin, const char *replacement, const char *with);
 
-#endif  // TEXT_H
+#endif  // STRING_H
