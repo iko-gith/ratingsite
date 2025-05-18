@@ -1,9 +1,9 @@
-#include "mongoose.h"     
+#include "../mongoose/mongoose.h"     
 #include "../files/input.h"    
 #include "../files/output.h"
 #include "../text/text.h"
 #include "../../constants.h"
-#include "mongoose_responses.h"
+#include "responses.h"
 #include <stdlib.h>                  
 #include <stdbool.h>
 
